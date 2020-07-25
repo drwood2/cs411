@@ -25,14 +25,15 @@ class Dataentry(db.Model):
 
 @app.route("/submit", methods=["POST"])
 def post_to_db():
+
     
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cur = conn.cursor()
-cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
-cur.execute("INSERT INTO test (num, data) VALUES (%s, %s)",(100, "abc'def"))
-conn.commit()
-cur.close()
-conn.close()
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+    cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
+    cur.execute("INSERT INTO test (num, data) VALUES (%s, %s)",(100, "abc'def"))
+    conn.commit()
+    cur.close()
+    conn.close()
     indata = Dataentry(request.form['mydata'])
     data = copy.copy(indata. __dict__ )
     del data["_sa_instance_state"]
