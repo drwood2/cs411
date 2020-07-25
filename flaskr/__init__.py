@@ -11,7 +11,6 @@ def create_app(test_config=None):
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     DATABASE_URL = os.environ['DATABASE_URL']
-    heroku = Heroku(app)
     db = SQLAlchemy(app)
 
     # app.config.from_mapping(
