@@ -4,7 +4,9 @@ import sys
 import json
 from flask_heroku import Heroku
 import copy
+import os
 app = Flask( __name__ )
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
 db = SQLAlchemy(app)
