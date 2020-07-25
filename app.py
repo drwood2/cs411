@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import sys
 import json
 from flask_heroku import Heroku
+import copy
 app = Flask( __name__ )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
