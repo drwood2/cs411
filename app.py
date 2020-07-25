@@ -22,7 +22,7 @@ class Dataentry(db.Model):
 @app.route("/submit", methods=["POST"])
 def post_to_db():
     indata = Dataentry(request.form['mydata'])
-    data = copy(indata. __dict__ )
+    data = copy.copy(indata. __dict__ )
     del data["_sa_instance_state"]
     try:
         db.session.add(indata)
