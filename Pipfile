@@ -7,6 +7,7 @@ verify_ssl = true
 
 [packages]
 flask = "*"
+flask-heroku= "*"
 flask-sqlalchemy = "*"
 flask-login = "*"
 python-dotenv = "*"
