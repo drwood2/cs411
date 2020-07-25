@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>you are editing request #{{ req['id'] }}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  <label for="req_date">date</label>
+  <input name="req_date" id="req_date" value="{{ request.form['req_date'] }}" required>
+
+  <label for="req_time">time</label>
+  <input name="req_time" id="req_time" value="{{ request.form['req_time'] }}" required>
+
+  <label for="location">location</label>
+  <input name="location" id="location" value="{{ request.form['location'] }}" required>
+
+  <label for="priority">priority</label>
+  <input name="priority" id="priority" value="{{ request.form['priority'] }}" required>
+
+  <label for="capacity">capacity</label>
+  <input name="capacity" id="capacity" value="{{ request.form['capacity'] }}" required>
+
+  <input type="submit" value="update request">
+</form>
+  <hr>
+  <form action="{{ url_for('user_req.delete', id=req['id']) }}" method="post">
+    <input class="danger" type="submit" value="delete request" onclick="return confirm('are you sure ?!');">
+  </form>
+{% endblock %}

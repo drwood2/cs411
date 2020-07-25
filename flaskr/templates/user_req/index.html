@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}user requests{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('user_req.create') }}"> make a new request</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for req in reqs %}
+    <article class="req">
+      <header>
+      <div class="about"> <h1>{{ req['username'] }}</h1> made a priority {{ req['priority'] }} req on {{ req['created'].strftime('%Y-%m-%d') }}</div>
+        {% if g.user['id'] == req['user_id'] %}
+          <a class="action" href="{{ url_for('user_req.update', id=req['id']) }}">edit</a>
+        {% endif %}
+      </header>
+      <p class="body">date: {{ req['req_date'] }}</p>
+      <p class="body">time: {{ req['req_time'] }}</p>
+      <p class="body">location: {{ req['location'] }}</p>
+      <p class="body">people: {{ req['capacity'] }} </p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
