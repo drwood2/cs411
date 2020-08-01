@@ -11,10 +11,12 @@
   {% for req in reqs %}
     <article class="req">
       <header>
-      <div class="about"> <h1>{{ req['username'] }}</h1> made a priority {{ req['priority'] }} req on {{ req[2].strftime('%Y-%m-%d') }}</div>
-        {% if g.maker['id'] == req[1] %}
-          <a class="action" href="{{ url_for('user_req.update', id=req['id']) }}">edit</a>
-        {% endif %}
+      {}
+      <div class="about"> <h1>{{req[1].maker[1]}}</h1> made a priority {{ req[7] }} request 
+      </div>
+        {% if g.maker[0] == req[1] %}
+          <a class="action" href="{{ url_for('user_req.update', id=req[0])}}">edit</a>
+       {% endif %}
       </header>
       <p class="body">date: {{ req[3] }}</p>
       <p class="body">time: {{ req[4] }}</p>

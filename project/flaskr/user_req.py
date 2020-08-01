@@ -19,7 +19,7 @@ def index():
     db = get_db()
     cur = db.cursor()
 
-    cur.execute("SELECT r.id, req_date, req_time, location, priority, capacity, created, maker_id, username FROM req r JOIN maker m ON r.maker_id = m.id ORDER BY created DESC;")
+    cur.execute("SELECT r.id, r.maker_id, r.created, r.req_date, r.req_time, r.location, r.priority, r.capacity, m.username FROM req r JOIN maker m ON r.maker_id = m.id ORDER BY created DESC;")
 
     return render_template("user_req/index.html", reqs=cur.fetchall())
 
@@ -37,7 +37,7 @@ def get_req (id, check_author=True):
     db = get_db()
     cur = db.cursor()
     cur.execute(
-            "SELECT r.id, req_date, req_time, location, priority, capacity, created, maker_id, username"
+            "SELECT r.id, r.maker_id, created, req_date, req_time, location, priority, capacity, m.username"
             " FROM req r JOIN maker m ON r.maker_id = m.id"
             " WHERE r.id = %s",
             (id,))
@@ -47,7 +47,7 @@ def get_req (id, check_author=True):
     if req is None:
         abort(404, "request id {0} does not exist".format(id))
 
-    if check_author and req["maker_id"] != g.maker[0]:
+    if check_author and req[1] != g.maker[0]:
         abort(403)
 
     return req
@@ -94,9 +94,6 @@ def update(id):
         priority = request.form["priority"]
         capacity = request.form["capacity"]
         error = None
-
-        if not req_date:
-            error = "date is required."
 
         if error is not None:
             flash(error)

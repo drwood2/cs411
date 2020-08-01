@@ -10,14 +10,13 @@ def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/scheduler'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/project'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-<<<<<<< HEAD
+
     #DATABASE_URL = os.environ['DATABASE_URL']
     #heroku = Heroku(app)
-=======
-    DATABASE_URL = os.environ['DATABASE_URL']
->>>>>>> 52a6c35d6c328f16a42b4ba0200c5e33a881f025
+
+    #DATABASE_URL = os.environ['DATABASE_URL']
     db = SQLAlchemy(app)
     app.config['SECRET_KEY'] = 'this-is-my-secret-key'
 

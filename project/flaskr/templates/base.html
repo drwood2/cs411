@@ -5,7 +5,7 @@
   <h1>scheduler</h1>
   <ul>
     {% if g.maker %}
-      <li><span>{{ g.maker['username'] }}</span>
+      <li><span>{{ g.maker[1] }}</span>
       <li><a href="{{ url_for('auth.logout') }}">log out</a>
     {% else %}
       <li><a href="{{ url_for('auth.register') }}">register</a>

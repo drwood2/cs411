@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>you are editing request #{{ req['id'] }}</h1>
+<h1>you are editing request #{{ req[0] }}</h1>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,7 @@
   <input type="submit" value="update request">
 </form>
   <hr>
-  <form action="{{ url_for('user_req.delete', id=req['id']) }}" method="post">
+  <form action="{{ url_for('user_req.delete', id=req[0]) }}" method="post">
     <input class="danger" type="submit" value="delete request" onclick="return confirm('are you sure ?!');">
   </form>
 {% endblock %}
